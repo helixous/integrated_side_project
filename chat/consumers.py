@@ -40,9 +40,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     # Receive message from WebSocket
     async def receive(self, text_data=None, bytes_data=None):
-        print('넘어온 데이터(text, bytes 순)')
-        print(text_data)
-        print(bytes_data)
+        # print('넘어온 데이터(text, bytes 순)')
+        # print(text_data)
+        # print(bytes_data)
         text_data_json = ujson.loads(text_data)
         message = text_data_json["message"]
 
@@ -54,6 +54,5 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from room group
     async def chat_message(self, event):
         message = event["message"]
-
         # Send message to WebSocket
-        await self.send(text_data=json.dumps({"message": message}))
+        await self.send(text_data=ujson.dumps({"message": message}))

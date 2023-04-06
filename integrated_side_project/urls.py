@@ -57,6 +57,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('chat/', include('chat.urls')),
 ]
 
 # API문서 자동화 URL 매핑
