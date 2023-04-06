@@ -149,7 +149,15 @@ CHANNEL_LAYERS = {
 #     }
 # }
 
-DATABASES = SECRETES['DATABASES']
+# DB 트리거에 따라
+# 참조 환경변수를 바꾸자.
+# postgresql이 설치된 컴퓨터에서
+# 서버를 구동하는 경우에는 LOCAL_DATABASE로 변경
+LOCAL_DATABASE = True
+if LOCAL_DATABASE:
+    DATABASES = SECRETES['LOCAL_DATABASES']
+else:
+    DATABASES = SECRETES['EXTERNAL_DATABASES']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
